@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromoMarket - Giriş / Qeydiyyat</title>
+    <link rel="stylesheet" href="login.register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-brand">
+                <a href="esasmenyu.html" class="logo">
+                    <span class="logo-icon">🏷️</span>
+                    <span class="logo-text">PromoMarket</span>
+                </a>
+            </div>
+
+            <div class="nav-menu">
+                <a href="esasmenyu.html" class="nav-link"><i class="fas fa-home"></i><span data-translate="home">Əsas Səhifə</span></a>
+                <a href="kodaxtar.html" class="nav-link"><i class="fas fa-search"></i><span data-translate="search_page">Kod Axtar</span></a>
+                <a href="kodsat.html" class="nav-link"><i class="fas fa-tag"></i><span data-translate="sell_code">Kod Sat</span></a>
+                <a href="melumat.html" class="nav-link"><i class="fas fa-info-circle"></i><span data-translate="about">Məlumat</span></a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="language-dropdown">
+                    <button class="language-btn" id="languageToggle">
+                        <i class="fas fa-globe"></i>
+                        <span class="lang-text">AZ</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <a href="#" data-lang="az"><span>Azərbaycanca</span></a>
+                        <a href="#" data-lang="en"><span>English</span></a>
+                        <a href="#" data-lang="ru"><span>Русский</span></a>
+                    </div>
+                </div>
+                
+                <!-- Giriş olunmayıbsa bu göstəriləcək -->
+                <div id="authSection">
+                    <a href="login.register.html" class="auth-btn active"><i class="fas fa-user"></i><span data-translate="login_register">Giriş / Qeydiyyat</span></a>
+                </div>
+
+                <!-- Giriş olunubsa bu göstəriləcək -->
+                <div class="profile-dropdown" id="profileSection" style="display: none;">
+                    <button class="profile-btn" id="profileToggle">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name" id="profileUsername">İstifadəçi</div>
+                                <div class="user-email" id="profileEmail">user@example.com</div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            <span data-translate="profile">Profilim</span>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            <span data-translate="settings">Tənzimləmələr</span>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-credit-card"></i>
+                            <span data-translate="payments">Ödənişlər</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span data-translate="logout">Çıxış</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- PHP Notification Code -->
+    <?php
+    session_start();
+    $success_message = "";
+    if (isset($_SESSION['success_message'])) {
+        $success_message = $_SESSION['success_message'];
+        unset($_SESSION['success_message']);
+    }
+    ?>
+
+    <!-- Auth Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="loginTab" data-tab="login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span data-translate="login">Giriş</span>
+                    </button>
+                    <button class="auth-tab" id="registerTab" data-tab="register">
+                        <i class="fas fa-user-plus"></i>
+                        <span data-translate="register">Qeydiyyat</span>
+                    </button>
+                </div>
+
+                <!-- Login Form -->
+                <div class="auth-form active" id="loginForm">
+                    <div class="form-header">
+                        <h2 data-translate="welcome_back">Hesabınıza daxil olun</h2>
+                        <p data-translate="login_subtitle">Xoş gəldiniz! Davam etmək üçün hesabınıza daxil olun.</p>
+                    </div>
+
+                    <form id="loginFormElement" action="login.php" method="POST">
+                        <div class="form-group">
+                            <label for="loginEmail" data-translate="email">E-poçt ünvanı</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" name="email" required placeholder="example@mail.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword" data-translate="password">Şifrə</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" name="password" required placeholder="Şifrənizi daxil edin">
+                                <button type="button" class="password-toggle" id="loginPasswordToggle">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="rememberMe" name="remember">
+                                <span class="checkmark"></span>
+                                <span data-translate="remember_me">Məni xatırla</span>
+                            </label>
+                            <a href="#" class="forgot-password" data-translate="forgot_password">Şifrəni unutmusunuz?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span data-translate="login">Daxil ol</span>
+                        </button>
+
+                        <div class="auth-divider">
+                            <span>və ya</span>
+                        </div>
+
+                        <div class="social-auth">
+                            <button type="button" class="btn btn-google">
+                                <i class="fab fa-google"></i>
+                                <span>Google ilə davam et</span>
+                            </button>
+                            <button type="button" class="btn btn-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook ilə davam et</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Register Form -->
+                <div class="auth-form" id="registerForm">
+                    <div class="form-header">
+                        <h2 data-translate="create_account">Hesab yaradın</h2>
+                        <p data-translate="register_subtitle">PromoMarket-ə xoş gəldiniz! Qeydiyyatdan keçin və endirimlərdən faydalanın.</p>
+                    </div>
+
+                    <form id="registerFormElement" action="register.php" method="POST">
+                        <div class="form-group">
+                            <label for="registerUsername" data-translate="username">İstifadəçi adı</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="registerUsername" name="username" required placeholder="İstifadəçi adınızı seçin">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerEmail" data-translate="email">E-poçt ünvanı</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="registerEmail" name="email" required placeholder="example@mail.com">
+                            </div>
+                        </div>
+
+                        <!-- Telefon nömrəsi hissəsi -->
+                        <div class="form-group">
+                            <label for="registerPhone">Telefon nömrəsi</label>
+                            <div class="input-group">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="registerPhone" name="phone" required placeholder="+994 XX XXX XX XX">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerPassword" data-translate="password">Şifrə</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="registerPassword" name="password" required placeholder="Ən azı 8 simvol">
+                                <button type="button" class="password-toggle" id="registerPasswordToggle">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="passwordStrengthFill"></div>
+                                </div>
+                                <div class="strength-text" id="passwordStrengthText">Şifrə gücü: Zəif</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="registerConfirmPassword" data-translate="confirm_password">Şifrəni təsdiqlə</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="registerConfirmPassword" name="confirm_password" required placeholder="Şifrənizi təkrar daxil edin">
+                            </div>
+                        </div>
+
+                        <div class="form-agreement">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="termsAgreement" name="terms" required>
+                                <span class="checkmark"></span>
+                                <span>
+                                    <a href="#" data-translate="terms">İstifadə Qaydaları</a> və 
+                                    <a href="#" data-translate="privacy">Məxfilik Siyasəti</a> ilə razıyam
+                                </span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-user-plus"></i>
+                            <span data-translate="register">Hesab yaradın</span>
+                        </button>
+
+                        <div class="auth-divider">
+                            <span>və ya</span>
+                        </div>
+
+                        <div class="social-auth">
+                            <button type="button" class="btn btn-google">
+                                <i class="fab fa-google"></i>
+                                <span>Google ilə qeydiyyat</span>
+                            </button>
+                            <button type="button" class="btn btn-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook ilə qeydiyyat</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Benefits Card -->
+            <div class="benefits-card">
+                <div class="benefits-header">
+                    <h3>PromoMarket icmasına qoşulun</h3>
+                    <p>1000-dən çox mağazada eksklüziv endirimlər əldə edin</p>
+                </div>
+                
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Ani aktivasiya</h4>
+                            <p>Kodları dərhal alın və istifadə edin</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>100% təhlükəsiz</h4>
+                            <p>Bütün kodlar yoxlanılıb və zəmanətlidir</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Pul qazanın</h4>
+                            <p>Öz kodlarınızı sataraq əlavə gəlir əldə edin</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Eksklüziv təkliflər</h4>
+                            <p>Üzvlər üçün xüsusi endirim kodları</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="benefits-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Aktiv istifadəçi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1K+</div>
+                        <div class="stat-label">Mağaza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Kod</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Təsdiq Mesajı Modalı -->
+    <div class="modal-overlay" id="emailConfirmationModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-envelope-circle-check"></i>
+            </div>
+            <h3>Emailinizi yoxlayın</h3>
+            <p>Sizin sorğunuz daxil etdiyiniz emailə göndərildi. Zəhmət olmasa emailinizə girərək onu qəbul edin. Əks təqdirdə qeydiyyatdan keçə bilməzsiniz.</p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="closeModal()">Başa düşdüm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification HTML -->
+    <?php if (!empty($success_message)): ?>
+        <div class="notification success">
+            <i class="fas fa-check-circle"></i>
+            <?php echo $success_message; ?>
+        </div>
+        <script>
+            setTimeout(function() {
+                var notification = document.querySelector('.notification');
+                if (notification) {
+                    notification.style.opacity = '0';
+                    setTimeout(function() {
+                        notification.remove();
+                    }, 500);
+                }
+            }, 5000);
+        </script>
+    <?php endif; ?>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PromoMarket</h3>
+                <p style="color: var(--gray); margin-bottom: 1rem;">Endirim kodları platforması - həm alın, həm satın, həm qənaət edin!</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kəşf Edin</h3>
+                <ul class="footer-links">
+                    <li><a href="esasmenyu.html">Əsas Səhifə</a></li>
+                    <li><a href="kodaxtar.html">Kod Axtar</a></li>
+                    <li><a href="kodsat.html">Kod Sat</a></li>
+                    <li><a href="melumat.html">Məlumat</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Kömək</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Əlaqə</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">İstifadə Qaydaları</a></li>
+                    <li><a href="#">Gizlilik Siyasəti</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 PromoMarket. Bütün hüquqlar qorunur.</p>
+        </div>
+    </footer>
+
+    <script src="login.register.js"></script>
+    <script>
+        // Modal funksiyaları
+        function showEmailConfirmationModal() {
+            document.getElementById('emailConfirmationModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('emailConfirmationModal').style.display = 'none';
+        }
+
+        // Form göndərildikdə modalı göstər
+        document.getElementById('registerFormElement').addEventListener('submit', function(e) {
+            // Formun yoxlanışından keçdikdən sonra modalı göstər
+            setTimeout(function() {
+                showEmailConfirmationModal();
+            }, 1000);
+        });
+
+        // Overlay-ə klikləndikdə modalı bağla
+        document.getElementById('emailConfirmationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

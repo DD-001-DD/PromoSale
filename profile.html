@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilim - PromoMarket</title>
+    <link rel="stylesheet" href="kodaxtar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="common.js"></script>
+    <style>
+        .profile-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .profile-avatar {
+            font-size: 4rem;
+            color: #2563eb;
+        }
+        
+        .profile-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+        
+        .profile-info p {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        .profile-details {
+            margin-bottom: 2rem;
+        }
+        
+        .profile-details h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        .detail-value {
+            color: #64748b;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        .user-codes-section {
+            margin-top: 3rem;
+        }
+        
+        .user-codes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="esasmenyu.html" class="logo">
+                <span class="logo-icon">🏷️</span>
+                PromoMarket
+            </a>
+            
+            <div class="nav-menu">
+                <a href="esasmenyu.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Əsas Səhifə</span>
+                </a>
+                <a href="kodaxtar.html" class="nav-link">
+                    <i class="fas fa-search"></i>
+                    <span>Kod Axtar</span>
+                </a>
+                <a href="kodsat.html" class="nav-link">
+                    <i class="fas fa-tag"></i>
+                    <span>Kod Sat</span>
+                </a>
+                <a href="melumat.html" class="nav-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Məlumat</span>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="language-dropdown">
+                    <button class="language-btn" id="languageToggle">
+                        <i class="fas fa-globe"></i>
+                        <span>AZ</span>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <a href="#" data-lang="az">Azərbaycanca</a>
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="ru">Русский</a>
+                    </div>
+                </div>
+
+                <button class="auth-btn">
+                    <i class="fas fa-user"></i>
+                    <span>Giriş / Qeydiyyat</span>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileToggle">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name">İstifadəçi</div>
+                                <div class="user-email">user@example.com</div>
+                                <div class="user-balance">💰 Balans: 0.00 AZN</div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profilim
+                        </a>
+                        <a href="kodsat.html" class="dropdown-item">
+                            <i class="fas fa-tags"></i>
+                            Kodlarım
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-wallet"></i>
+                            Balans
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Çıxış
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Profil Məzmunu -->
+    <section class="search-results" style="padding: 120px 2rem 60px;">
+        <div class="container">
+            <div class="results-header">
+                <h2>👤 Profilim</h2>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="profileUserName">İstifadəçi</h3>
+                            <p id="profileUserEmail">user@example.com</p>
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <span class="stat-number" id="profileBalance">0.00</span>
+                                    <span class="stat-label">AZN Balans</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number" id="profileCodes">0</span>
+                                    <span class="stat-label">Kod</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number" id="profileSales">0</span>
+                                    <span class="stat-label">Satış</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <h4>Şəxsi Məlumatlar</h4>
+                        <div class="detail-row">
+                            <span class="detail-label">Telefon:</span>
+                            <span class="detail-value" id="profilePhone">+994 XX XXX XX XX</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Qeydiyyat tarixi:</span>
+                            <span class="detail-value" id="profileJoinDate">01.01.2024</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">İstifadəçi ID:</span>
+                            <span class="detail-value" id="profileUserId">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button class="btn btn-primary" onclick="editProfile()">
+                            <i class="fas fa-edit"></i>
+                            Profili Redaktə Et
+                        </button>
+                        <button class="btn btn-secondary" onclick="changePassword()">
+                            <i class="fas fa-key"></i>
+                            Şifrəni Dəyiş
+                        </button>
+                    </div>
+                </div>
+
+                <!-- İstifadəçi kodları -->
+                <div class="user-codes-section">
+                    <h3>📊 Mənim Kodlarım</h3>
+                    <div class="user-codes-grid" id="userCodesGrid">
+                        <!-- Kodlar buraya yüklənəcək -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Profil məlumatlarını yüklə
+        async function loadProfileData() {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                const userData = JSON.parse(user);
+                
+                // Şəxsi məlumatlar
+                document.getElementById('profileUserName').textContent = userData.username;
+                document.getElementById('profileUserEmail').textContent = userData.email;
+                document.getElementById('profileBalance').textContent = userData.balance || '0.00';
+                document.getElementById('profilePhone').textContent = userData.phone || '+994 XX XXX XX XX';
+                document.getElementById('profileUserId').textContent = userData.id;
+                
+                if (userData.created_at) {
+                    const joinDate = new Date(userData.created_at);
+                    document.getElementById('profileJoinDate').textContent = 
+                        joinDate.toLocaleDateString('az-AZ');
+                }
+                
+                // İstifadəçi kodlarını yüklə
+                await loadUserCodes(userData.id);
+            }
+        }
+
+        // İstifadəçi kodlarını yüklə
+        async function loadUserCodes(userId) {
+            try {
+                const response = await fetch(`admin.php?api=get_user_codes&user_id=${userId}`);
+                const data = await response.json();
+                
+                const codesGrid = document.getElementById('userCodesGrid');
+                
+                if (data.success && data.codes.length > 0) {
+                    document.getElementById('profileCodes').textContent = data.codes.length;
+                    
+                    // Satış sayını hesabla
+                    const totalSales = data.codes.reduce((sum, code) => sum + (code.sales || 0), 0);
+                    document.getElementById('profileSales').textContent = totalSales;
+                    
+                    // Kodları göstər
+                    codesGrid.innerHTML = data.codes.map(code => `
+                        <div class="code-card-new">
+                            <div class="code-card-header">
+                                <div class="store-icon ${code.category}">
+                                    <i class="fas fa-${getStoreIcon(code.category)}"></i>
+                                </div>
+                                <div class="store-info">
+                                    <div class="store-name">${code.store_name}</div>
+                                    <span class="store-category">${code.category}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="code-display">
+                                <span class="promo-code">${code.promo_code}</span>
+                            </div>
+                            
+                            <div class="code-stats">
+                                <div class="stat-item views">
+                                    <div class="stat-value">${code.views || 0}</div>
+                                    <div class="stat-label">Baxış</div>
+                                </div>
+                                <div class="stat-item sales">
+                                    <div class="stat-value">${code.sales || 0}</div>
+                                    <div class="stat-label">Satış</div>
+                                </div>
+                                <div class="stat-item revenue">
+                                    <div class="stat-value">${(code.revenue || 0).toFixed(2)}</div>
+                                    <div class="stat-label">AZN</div>
+                                </div>
+                            </div>
+                            
+                            <div class="status-badge status-${code.status}">
+                                ${getStatusText(code.status)}
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    codesGrid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-tags"></i>
+                            <p>Hələ kod əlavə etməmisiniz</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Kodlar yüklənərkən xəta:', error);
+                document.getElementById('userCodesGrid').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Kodlar yüklənərkən xəta baş verdi</p>
+                    </div>
+                `;
+            }
+        }
+
+        function getStoreIcon(category) {
+            const icons = {
+                clothing: 'tshirt',
+                electronics: 'laptop',
+                games: 'gamepad',
+                sports: 'futbol',
+                food: 'utensils',
+                beauty: 'spa',
+                travel: 'plane'
+            };
+            return icons[category] || 'tag';
+        }
+
+        function getStatusText(status) {
+            const statuses = {
+                'pending': 'Gözləmədə',
+                'approved': 'Təsdiqləndi',
+                'rejected': 'Rədd edildi'
+            };
+            return statuses[status] || status;
+        }
+
+        function editProfile() {
+            showNotification('Profil redaktə funksiyası hazırlanır...', 'success');
+        }
+
+        function changePassword() {
+            showNotification('Şifrə dəyişmə funksiyası hazırlanır...', 'success');
+        }
+
+        // Səhifə yüklənəndə
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfileData();
+        });
+    </script>
+</body>
+</html>

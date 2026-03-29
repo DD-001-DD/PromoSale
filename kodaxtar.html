@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <script src="common.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kod Axtar - PromoMarket</title>
+    <link rel="stylesheet" href="kodaxtar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Debug info -->
+<div id="debugInfo" style="position: fixed; top: 10px; left: 10px; background: red; color: white; padding: 10px; z-index: 10000; display: none;">
+    JavaScript işləyir!
+</div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="esasmenyu.html" class="logo">
+                <span class="logo-icon">🏷️</span>
+                PromoMarket
+            </a>
+            
+            <div class="nav-menu">
+                <a href="esasmenyu.html" class="nav-link" data-translate="home">
+                    <i class="fas fa-home"></i>
+                    <span>Əsas Səhifə</span>
+                </a>
+                <a href="kodaxtar.html" class="nav-link active" data-translate="search_page">
+                    <i class="fas fa-search"></i>
+                    <span>Kod Axtar</span>
+                </a>
+                <a href="kodsat.html" class="nav-link" data-translate="sell_code">
+                    <i class="fas fa-tag"></i>
+                    <span>Kod Sat</span>
+                </a>
+                <a href="melumat.html" class="nav-link" data-translate="about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Məlumat</span>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="language-dropdown">
+                    <button class="language-btn" id="languageToggle">
+                        <i class="fas fa-globe"></i>
+                        <span>AZ</span>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <a href="#" data-lang="az">
+                            <i class="fas fa-globe"></i>
+                            Azərbaycanca
+                        </a>
+                        <a href="#" data-lang="en">
+                            <i class="fas fa-globe"></i>
+                            English
+                        </a>
+                        <a href="#" data-lang="ru">
+                            <i class="fas fa-globe"></i>
+                            Русский
+                        </a>
+                    </div>
+                </div>
+
+                <button class="auth-btn" data-translate="login_register">
+                    <i class="fas fa-user"></i>
+                    <span>Giriş / Qeydiyyat</span>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileToggle">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name">İstifadəçi</div>
+                                <div class="user-email">user@example.com</div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-chart-bar"></i>
+                            Profilim
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Tənzimləmələr
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-credit-card"></i>
+                            Ödənişlər
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-key"></i>
+                            Şifrəni dəyiş
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Çıxış
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-search">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                🔍 <span data-translate="search_codes">Kod Axtar</span> & 
+                <span class="hero-accent" data-translate="save_money">Qənaət Et</span>
+            </h1>
+            <p class="hero-subtitle" data-translate="search_hero_subtitle">
+                1000-dən çox mağazadan endirim kodlarını tapın!
+            </p>
+            
+            <div class="search-container-large">
+                <div class="search-box">
+                    <input type="text" class="search-input-large" id="mainSearch" placeholder="Mağaza, məhsul və ya kateqoriya axtar..." data-translate="search_placeholder">
+                    <button class="clear-search-btn" id="clearSearch">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="search-btn-large" id="searchButton" data-translate="search">
+                        <i class="fas fa-search"></i>
+                        <span>Axtar</span>
+                    </button>
+                </div>
+                
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label data-translate="category">Kateqoriya</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="" data-translate="all">Hamısı</option>
+                            <option value="clothing" data-translate="clothing">Geyim</option>
+                            <option value="electronics" data-translate="electronics">Elektronika</option>
+                            <option value="games" data-translate="games">Oyun</option>
+                            <option value="sports" data-translate="sports">İdman</option>
+                            <option value="food" data-translate="food">Yemək</option>
+                            <option value="beauty" data-translate="beauty">Gözəllik</option>
+                            <option value="travel" data-translate="travel">Səyahət</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label data-translate="sort_by">Sırala</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="newest" data-translate="newest">Ən yenilər</option>
+                            <option value="popular" data-translate="popular">Ən populyar</option>
+                            <option value="discount" data-translate="highest_discount">Yüksək endirim</option>
+                            <option value="price" data-translate="lowest_price">Aşağı qiymət</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label data-translate="discount">Endirim</label>
+                        <select id="discountFilter" class="filter-select">
+                            <option value="0" data-translate="all">Hamısı</option>
+                            <option value="10">10%+</option>
+                            <option value="20">20%+</option>
+                            <option value="30">30%+</option>
+                            <option value="50">50%+</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nəticələr Bölməsi -->
+    <section class="search-results">
+        <div class="container">
+            <div class="results-header">
+                <h2 data-translate="search_results">Axtarış Nəticələri</h2>
+                <div class="results-count">
+                    <span id="resultsCount">0</span> <span data-translate="codes_found">kod tapıldı</span>
+                </div>
+            </div>
+            
+            <div class="codes-grid" id="searchResultsGrid">
+                <!-- Kodlar burada görünəcək -->
+                <div class="loading-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Kodlar yüklənir...</p>
+                </div>
+            </div>
+            
+            <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+                <button class="load-more-btn" onclick="loadMoreCodes()" data-translate="load_more">
+                    <i class="fas fa-chevron-down"></i>
+                    <span>Daha çox</span>
+                </button>
+            </div>
+            
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-content">
+                    <i class="fas fa-search"></i>
+                    <h3 data-translate="no_results">Heç bir nəticə tapılmadı</h3>
+                    <p data-translate="no_results_desc">Axtarış şərtlərinizə uyğun kod tapılmadı. Zəhmət olmasa başqa açar sözlər yoxlayın.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Populyar Kateqoriyalar -->
+    <section class="popular-categories">
+        <div class="container">
+            <h2 class="section-title" data-translate="popular_categories">Populyar Kateqoriyalar</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterByCategory('clothing')">
+                    <div class="category-icon clothing">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 data-translate="clothing">Geyim</h3>
+                    <p data-translate="clothing_desc">Nike, Adidas, Zara və s.</p>
+                    <span class="category-count">1,234 kod</span>
+                </div>
+                
+                <div class="category-card" onclick="filterByCategory('electronics')">
+                    <div class="category-icon electronics">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 data-translate="electronics">Elektronika</h3>
+                    <p data-translate="electronics_desc">Amazon, Steam, eBay və s.</p>
+                    <span class="category-count">856 kod</span>
+                </div>
+                
+                <div class="category-card" onclick="filterByCategory('games')">
+                    <div class="category-icon games">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 data-translate="games">Oyun</h3>
+                    <p data-translate="games_desc">Steam, Epic Games, Origin</p>
+                    <span class="category-count">567 kod</span>
+                </div>
+                
+                <div class="category-card" onclick="filterByCategory('food')">
+                    <div class="category-icon food">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 data-translate="food">Yemək</h3>
+                    <p data-translate="food_desc">Starbucks, McDonalds, KFC</p>
+                    <span class="category-count">432 kod</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PromoMarket</h3>
+                <p data-translate="footer_desc" style="color: var(--gray); margin-bottom: 1rem;">
+                    Endirim kodları platforması - həm alın, həm satın, həm qənaət edin!
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-translate="explore">Kəşf Edin</h3>
+                <ul class="footer-links">
+                    <li><a href="esasmenyu.html" data-translate="home">Əsas Səhifə</a></li>
+                    <li><a href="kodaxtar.html" data-translate="search_page">Kod Axtar</a></li>
+                    <li><a href="kodsat.html" data-translate="sell_code">Kod Sat</a></li>
+                    <li><a href="melumat.html" data-translate="about">Məlumat</a></li>
+                    <li><a href="login.register.html" data-translate="login_register">Giriş / Qeydiyyat</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-translate="help">Kömək</h3>
+                <ul class="footer-links">
+                    <li><a href="elaqe.html" data-translate="contact">Əlaqə</a></li>
+                    <li><a href="faq.html" data-translate="faq">FAQ</a></li>
+                    <li><a href="qaydalar.html" data-translate="terms">İstifadə Qaydaları</a></li>
+                    <li><a href="gizlilik.html" data-translate="privacy">Gizlilik Siyasəti</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 PromoMarket. <span data-translate="all_rights">Bütün hüquqlar qorunur.</span></p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="kodaxtar.js"></script>
+</body>
+</html>

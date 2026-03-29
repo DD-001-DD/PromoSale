@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <script src="common.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Məlumat - PromoMarket</title>
+    <link rel="stylesheet" href="melumat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="esasmenyu.html" class="logo">
+                <span class="logo-icon">🏷️</span>
+                PromoMarket
+            </a>
+            
+            <div class="nav-menu">
+                <a href="esasmenyu.html" class="nav-link" data-translate="home">
+                    <i class="fas fa-home"></i>
+                    <span>Əsas Səhifə</span>
+                </a>
+                <a href="kodaxtar.html" class="nav-link" data-translate="search_page">
+                    <i class="fas fa-search"></i>
+                    <span>Kod Axtar</span>
+                </a>
+                <a href="kodsat.html" class="nav-link" data-translate="sell_code">
+                    <i class="fas fa-tag"></i>
+                    <span>Kod Sat</span>
+                </a>
+                <a href="melumat.html" class="nav-link active" data-translate="about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Məlumat</span>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="language-dropdown">
+                    <button class="language-btn" id="languageToggle">
+                        <i class="fas fa-globe"></i>
+                        <span>AZ</span>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <a href="#" data-lang="az">
+                            <i class="fas fa-globe"></i>
+                            Azərbaycanca
+                        </a>
+                        <a href="#" data-lang="en">
+                            <i class="fas fa-globe"></i>
+                            English
+                        </a>
+                        <a href="#" data-lang="ru">
+                            <i class="fas fa-globe"></i>
+                            Русский
+                        </a>
+                    </div>
+                </div>
+
+                <button class="auth-btn" data-translate="login_register">
+                    <i class="fas fa-user"></i>
+                    <span>Giriş / Qeydiyyat</span>
+                </button>
+
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileToggle">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name">İstifadəçi</div>
+                                <div class="user-email">user@example.com</div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-chart-bar"></i>
+                            Profilim
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Tənzimləmələr
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-credit-card"></i>
+                            Ödənişlər
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-key"></i>
+                            Şifrəni dəyiş
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Çıxış
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                📚 <span data-translate="about_title">Məlumat</span> & 
+                <span class="hero-accent" data-translate="help">Kömək</span>
+            </h1>
+            <p class="hero-subtitle" data-translate="about_subtitle">
+                PromoMarket haqqında hər şeyi öyrənin. Necə işlədiyi, qaydaları və tez-tez verilən suallar.
+            </p>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-translate="how_it_works">PromoMarket Necə İşləyir?</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 data-translate="step1_title">Kod Axtar</h3>
+                    <p data-translate="step1_desc">
+                        1000-dən çox mağazadan endirim kodlarını axtarın. Kateqoriya, mağaza və ya məhsul adı ilə filtr edin.
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 data-translate="step2_title">Kodu Al</h3>
+                    <p data-translate="step2_desc">
+                        İstədiyiniz kodu seçin və kiçik bir ödəniş edin. Kod dərhal sizin üçün aktiv olacaq.
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 data-translate="step3_title">Kodunu Sat</h3>
+                    <p data-translate="step3_desc">
+                        Öz endirim kodlarınızı əlavə edin və digər istifadəçilərə satın. Həm qənaət edin, həm də qazanın!
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 data-translate="step4_title">Qazan</h3>
+                    <p data-translate="step4_desc">
+                        Satdığınız hər kod üçün gəlir əldə edin. Ödənişlər tez və təhlükəsiz şəkildə hesabınıza köçürülür.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title" data-translate="why_choose">Niyə PromoMarket-i Seçməlisiniz?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 data-translate="benefit1_title">100% Etibarlı</h3>
+                    <p data-translate="benefit1_desc">
+                        Bütün kodlarımız yoxlanılıb və zəmanətlidir. Saxta kod problemindən narahat olmayın.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 data-translate="benefit2_title">Sürətli Aktivasiya</h3>
+                    <p data-translate="benefit2_desc">
+                        Kodları dərhal alın və istifadə edin. Heç bir gözləmə, ani aktivasiya.
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 data-translate="benefit3_title">Əlavə Gəlir</h3>
+                    <p data-translate="benefit3_desc">
+                        Öz kodlarınızı sataraq əlavə gəlir əldə edin. Həm qənaət, həm qazanç!
+                    </p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 data-translate="benefit4_title">24/7 Dəstək</h3>
+                    <p data-translate="benefit4_desc">
+                        Hər zaman kömək üçün buradayıq. Texniki dəstək komandamız 24/7 xidmətinizdədir.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section class="rules">
+        <div class="container">
+            <h2 class="section-title" data-translate="rules">İstifadə Qaydaları</h2>
+            <div class="rules-content">
+                <div class="rule-item">
+                    <div class="rule-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="rule-text">
+                        <h3 data-translate="rule1_title">Etibarlı Kodlar</h3>
+                        <p data-translate="rule1_desc">
+                            Yalnız etibarlı və işləyən endirim kodlarını paylaşın. Saxta kod paylaşan istifadəçilər bloklanacaq.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="rule-text">
+                        <h3 data-translate="rule2_title">Məxfilik</h3>
+                        <p data-translate="rule2_desc">
+                            Şəxsi məlumatlarınız qorunur. Heç bir məlumatınız üçüncü tərəflərlə paylaşılmayacaq.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="rule-text">
+                        <h3 data-translate="rule3_title">Geri Qaytarma</h3>
+                        <p data-translate="rule3_desc">
+                            Alınan kodlar üçün geri qaytarma etmək mümkün deyil. Kod alınmazdan əvvəl diqqətlə yoxlayın.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-item">
+                    <div class="rule-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="rule-text">
+                        <h3 data-translate="rule4_title">Ədalətli Qiymət</h3>
+                        <p data-translate="rule4_desc">
+                            Kodlarınızı ədalətli qiymətə təklif edin. Həddən artıq yüksək qiymətlər moderasiya edilə bilər.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title" data-translate="faq">Tez-tez Verilən Suallar</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-translate="faq1_question">Kodları necə ala bilərəm?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq1_answer">
+                            Kod almaq üçün əvvəlcə qeydiyyatdan keçməlisiniz. Sonra istədiyiniz kodu seçib "Al" düyməsini basın. Ödəniş etdikdən sonra kod avtomatik olaraq sizin üçün aktiv olacaq.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-translate="faq2_question">Öz kodlarımı necə sata bilərəm?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq2_answer">
+                            "Kod Sat" səhifəsinə keçid edin və yeni kod əlavə edin. Kodun məlumatlarını, qiymətini və etibarlılıq müddətini daxil edin. Kodunuz yoxlanıldıqdan sonra platformada görünəcək.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-translate="faq3_question">Ödənişləri necə alıram?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq3_answer">
+                            Satdığınız hər kod üçün qazancınız avtomatik olaraq balansınıza əlavə olunur. Minimum 5 AZN məbləğində olduqda, istənilən zaman bank kartınıza və ya elektron pul kisənizə köçürə bilərsiniz.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-translate="faq4_question">Kod işləmirsə nə etməliyəm?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq4_answer">
+                            Əgər aldığınız kod işləmirsə, dərhal dəstək komandamızla əlaqə saxlayın. Kod yoxlanılacaq və problem yaranarsa, ödənişiniz geri qaytarılacaq və ya alternativ kod təklif olunacaq.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-translate="faq5_question">Kodlar nə qədər müddətə etibarlıdır?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq5_answer">
+                            Hər kodun öz etibarlılıq müddəti var. Kodun səhifəsində bitmə tarixi göstərilir. Etibarlılıq müddəti bitmiş kodlar avtomatik olaraq platformadan silinir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2 class="cta-title" data-translate="ready_to_start">Hazırsınız?</h2>
+            <p data-translate="cta_desc" style="margin-bottom: 2rem; opacity: 0.9;">
+                İndi PromoMarket icmasına qoşulun və endirimlərin üstünlüklərindən yararlanın.
+            </p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="window.location.href='kodaxtar.html'">
+                    <i class="fas fa-search"></i>
+                    <span data-translate="search_codes">Kod Axtar</span>
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='kodsat.html'">
+                    <i class="fas fa-tag"></i>
+                    <span data-translate="sell_code">Kod Sat</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PromoMarket</h3>
+                <p data-translate="footer_desc" style="color: var(--gray); margin-bottom: 1rem;">
+                    Endirim kodları platforması - həm alın, həm satın, həm qənaət edin!
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-translate="explore">Kəşf Edin</h3>
+                <ul class="footer-links">
+                    <li><a href="esasmenyu.html" data-translate="home">Əsas Səhifə</a></li>
+                    <li><a href="kodaxtar.html" data-translate="search_page">Kod Axtar</a></li>
+                    <li><a href="kodsat.html" data-translate="sell_code">Kod Sat</a></li>
+                    <li><a href="melumat.html" data-translate="about">Məlumat</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-translate="help">Kömək</h3>
+                <ul class="footer-links">
+                    <li><a href="#" data-translate="contact">Əlaqə</a></li>
+                    <li><a href="melumat.html" data-translate="faq">FAQ</a></li>
+                    <li><a href="#" data-translate="terms">İstifadə Qaydaları</a></li>
+                    <li><a href="#" data-translate="privacy">Gizlilik Siyasəti</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 PromoMarket. <span data-translate="all_rights">Bütün hüquqlar qorunur.</span></p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="melumat.js"></script>
+</body>
+</html>

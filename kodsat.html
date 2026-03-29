@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <script src="common.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kod Sat - PromoMarket</title>
+    <link rel="stylesheet" href="kodsat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="esasmenyu.html" class="logo">
+                <span class="logo-icon">🏷️</span>
+                PromoMarket
+            </a>
+            
+            <div class="nav-menu">
+                <a href="esasmenyu.html" class="nav-link" data-translate="home">
+                    <i class="fas fa-home"></i>
+                    <span>Əsas Səhifə</span>
+                </a>
+                <a href="kodaxtar.html" class="nav-link" data-translate="search_page">
+                    <i class="fas fa-search"></i>
+                    <span>Kod Axtar</span>
+                </a>
+                <a href="kodsat.html" class="nav-link active" data-translate="sell_code">
+                    <i class="fas fa-tag"></i>
+                    <span>Kod Sat</span>
+                </a>
+                <a href="melumat.html" class="nav-link" data-translate="about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Məlumat</span>
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="language-dropdown">
+                    <button class="language-btn" id="languageToggle">
+                        <i class="fas fa-globe"></i>
+                        <span>AZ</span>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <a href="#" data-lang="az">
+                            <i class="fas fa-globe"></i>
+                            Azərbaycanca
+                        </a>
+                        <a href="#" data-lang="en">
+                            <i class="fas fa-globe"></i>
+                            English
+                        </a>
+                        <a href="#" data-lang="ru">
+                            <i class="fas fa-globe"></i>
+                            Русский
+                        </a>
+                    </div>
+                </div>
+
+                <button class="auth-btn" id="authButton" data-translate="login_register">
+                    <i class="fas fa-user"></i>
+                    <span>Giriş / Qeydiyyat</span>
+                </button>
+
+                <!-- Profile Dropdown -->
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileToggle">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <div class="dropdown-header">
+                            <div class="user-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name">İstifadəçi123</div>
+                                <div class="user-email">user@example.com</div>
+                                <div class="user-balance">💰 Balans: 25.50 AZN</div>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Profilim
+                        </a>
+                        <a href="mycodes.html" class="dropdown-item">
+                            <i class="fas fa-tags"></i>
+                            Kodlarım
+                        </a>
+                        <a href="balance.html" class="dropdown-item">
+                            <i class="fas fa-wallet"></i>
+                            Balans
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Tənzimləmələr
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Çıxış
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-sell">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                💸 <span data-translate="sell_code">Kod Sat</span> & 
+                <span class="hero-accent" data-translate="earn_money">Qazan</span>
+            </h1>
+            <p class="hero-subtitle" data-translate="sell_hero_subtitle">
+                Öz endirim kodlarını sat, həm qənaət et həm də qazan!
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <div class="stat-number">4.8/5</div>
+                        <div class="stat-label" data-translate="market_rating">Market Reytingi</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💵</div>
+                    <div class="stat-content">
+                        <div class="stat-number">$8,500+</div>
+                        <div class="stat-label" data-translate="total_earnings">Ümumi Pul</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-content">
+                        <div class="stat-number">12,430+</div>
+                        <div class="stat-label" data-translate="active_listings">Aktiv Elanlar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kod Sat Əsas Kontent -->
+    <section class="sell-code-main">
+        <div class="sell-container">
+            <!-- Yeni Kod Əlavə Et -->
+            <div class="add-code-section">
+                <h2>🆕 <span data-translate="add_new_code">Yeni Kod Əlavə Et</span></h2>
+                
+                <div class="add-code-form">
+                    <form id="addCodeForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-translate="store_name">Mağaza adı</label>
+                                <input type="text" id="storeName" required class="form-input" placeholder="Nike, Steam, Starbucks...">
+                            </div>
+                            <div class="form-group">
+                                <label data-translate="store_url">Mağaza Linki</label>
+                                <input type="text" id="storeUrl" class="form-input" placeholder="nike.com, steam.com...">
+                                <small class="form-hint" data-translate="url_hint">http:// yazmaq lazım deyil</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-translate="promo_code">Promo Kod</label>
+                                <input type="text" id="promoCode" required class="form-input" placeholder="ENDIRIM2024">
+                            </div>
+                            <div class="form-group">
+                                <label data-translate="discount">Endirim %</label>
+                                <input type="number" id="discount" min="1" max="99" required class="form-input" placeholder="15">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-translate="category">Kateqoriya</label>
+                                <select id="category" required class="form-input">
+                                    <option value="">Seçin...</option>
+                                    <option value="clothing" data-translate="clothing">Geyim</option>
+                                    <option value="electronics" data-translate="electronics">Elektronika</option>
+                                    <option value="games" data-translate="games">Oyun</option>
+                                    <option value="sports" data-translate="sports">İdman</option>
+                                    <option value="food" data-translate="food">Yemək</option>
+                                    <option value="beauty" data-translate="beauty">Gözəllik</option>
+                                    <option value="travel" data-translate="travel">Səyahət</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label data-translate="price">Satış Qiyməti ($)</label>
+                                <input type="number" id="price" step="0.01" min="0.01" required class="form-input" placeholder="2.99">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-translate="validity_date">Etibarlılıq Tarixi</label>
+                                <input type="date" id="validityDate" required class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label data-translate="discount_amount">Endirim Məbləği</label>
+                                <input type="text" id="discountAmount" class="form-input" placeholder="Məs: 10 AZN, 20% və ya 5$">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label data-translate="description">Təsvir</label>
+                            <textarea id="description" rows="3" class="form-input" data-translate="description_placeholder" placeholder="Kod haqqında qısa təsvir..."></textarea>
+                        </div>
+
+                        <!-- Təhlükəsizlik Qaydaları -->
+                        <div class="terms-section">
+                            <a href="javascript:void(0)" class="terms-link" onclick="showTermsModal()" data-translate="security_rules">
+                                <i class="fas fa-shield-alt"></i>
+                                Təhlükəsizlik Qaydaları
+                            </a>
+                        </div>
+
+                        <!-- Təsdiq Checkbox -->
+                        <div class="terms-confirm">
+                            <label class="confirm-checkbox">
+                                <input type="checkbox" id="termsAgree">
+                                <span class="checkmark"></span>
+                                <span data-translate="agree_terms">Yuxarıdakı qaydaları oxudum və qəbul edirəm</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                            <i class="fas fa-plus"></i>
+                            <span data-translate="add_code">Kodu Əlavə Et</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Kodlarım Grid -->
+            <div class="my-codes-section">
+                <div class="section-header">
+                    <h2>📊 <span data-translate="my_codes">Kodlarım</span></h2>
+                    <div class="header-actions">
+                        <button class="status-info-btn" onclick="showStatusInfoModal()">
+                            <i class="fas fa-info-circle"></i>
+                            Statuslar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="my-codes-grid" id="codesGridContent">
+                    <!-- Kodlar buraya JavaScript ilə əlavə olunacaq -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Təhlükəsizlik Qaydaları Modal -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-translate="security_rules">Təhlükəsizlik Qaydaları</h3>
+                <button class="modal-close" onclick="closeTermsModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="terms-content-modal">
+                    <div class="terms-columns">
+                        <div class="terms-column">
+                            <h4 data-translate="seller_responsibilities">📋 Satıcı Məsuliyyətləri:</h4>
+                            <ul>
+                                <li data-translate="rule1">Kodun işlədiyini təmin etməlisiniz</li>
+                                <li data-translate="rule2">Etibarlı mağazadan kod olmalıdır</li>
+                                <li data-translate="rule3">Kodun vaxtı bitməməlidir</li>
+                                <li data-translate="rule4">Düzgün kateqoriya seçilməlidir</li>
+                                <li>Kodun şərtlərini düzgün təsvir etməlisiniz</li>
+                                <li>Qiymət real bazar qiymətinə uyğun olmalıdır</li>
+                            </ul>
+                        </div>
+                        <div class="terms-column">
+                            <h4 data-translate="buyer_responsibilities">👤 Alıcı Məsuliyyətləri:</h4>
+                            <ul>
+                                <li data-translate="rule5">Kodu düzgün daxil etməlidir</li>
+                                <li data-translate="rule6">Vaxtında istifadə etməlidir</li>
+                                <li data-translate="rule7">Şərtlərə uyğun istifadə etməlidir</li>
+                                <li data-translate="rule8">Kodu bir dəfə istifadə edə bilər</li>
+                                <li>Alınan kodu başqası ilə paylaşmamalıdır</li>
+                                <li>Problem olduqda dərhal bildirməlidir</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="terms-warning">
+                        <p>⚠️ <strong data-translate="warning">Diqqət:</strong> <span data-translate="warning_text">Saxta kod paylaşan istifadəçilər bloklanacaq!</span></p>
+                    </div>
+                    <div class="terms-additional">
+                        <h5>Admin Təsdiqi:</h5>
+                        <ul>
+                            <li>Bütün kodlar admin tərəfindən yoxlanılır</li>
+                            <li>Təsdiqləndikdən sonra kodaxtar.html-də görsənir</li>
+                            <li>Təsdiq prosesi 24 saat çəkə bilər</li>
+                            <li>Qaydalara uyğun olmayan kodlar silinir</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeTermsModal()" data-translate="understand">
+                    Başa düşdüm
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Məlumatları Modal -->
+    <div class="modal-overlay" id="statusInfoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📋 Kod Statusları</h3>
+                <button class="modal-close" onclick="closeStatusInfoModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="status-info-content">
+                    <div class="status-item">
+                        <div class="status-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="status-details">
+                            <h4>Gözləmədə</h4>
+                            <p>Kod admin tərəfindən yoxlanılmağı gözləyir. Bu zaman kod axtarış səhifəsində görünməz.</p>
+                            <ul>
+                                <li>Admin təsdiqi gözləyir</li>
+                                <li>Kod satışa hazır deyil</li>
+                                <li>24 saat ərzində yoxlanılır</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="status-item">
+                        <div class="status-icon active">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="status-details">
+                            <h4>Təsdiqləndi</h4>
+                            <p>Kod admin tərəfindən təsdiqlənib və aktiv satışdadır. İstifadəçilər kodu ala bilər.</p>
+                            <ul>
+                                <li>Kod aktiv satışdadır</li>
+                                <li>Baxış və satış statistikası görünür</li>
+                                <li>Gəlir hesablanır</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="status-item">
+                        <div class="status-icon banned">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <div class="status-details">
+                            <h4>Bloklandı</h4>
+                            <p>Kod admin tərəfindən bloklanıb. Səbəb: qaydalara uyğunsuzluq və ya şikayət.</p>
+                            <ul>
+                                <li>Kod satışdan çıxarılıb</li>
+                                <li>Yeni satış üçün aktiv deyil</li>
+                                <li>Blok səbəbi: qaydalar pozuntusu</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="status-item">
+                        <div class="status-icon expired">
+                            <i class="fas fa-calendar-times"></i>
+                        </div>
+                        <div class="status-details">
+                            <h4>Bitmiş</h4>
+                            <p>Kodun etibarlılıq müddəti bitib. Avtomatik olaraq satışdan çıxarılıb.</p>
+                            <ul>
+                                <li>Etibarlılıq tarixi keçib</li>
+                                <li>Kod avtomatik deaktiv olub</li>
+                                <li>Yenilənməsi mümkün deyil</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeStatusInfoModal()">
+                    Başa düşdüm
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PromoMarket</h3>
+                <p data-translate="footer_desc" style="color: var(--gray); margin-bottom: 1rem;">
+                    Endirim kodları platforması - həm alın, həm satın, həm qənaət edin!
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-translate="explore">Kəşf Edin</h3>
+                <ul class="footer-links">
+                    <li><a href="esasmenyu.html" data-translate="home">Əsas Səhifə</a></li>
+                    <li><a href="kodaxtar.html" data-translate="search_page">Kod Axtar</a></li>
+                    <li><a href="kodsat.html" data-translate="sell_code">Kod Sat</a></li>
+                    <li><a href="melumat.html" data-translate="about">Məlumat</a></li>
+                    <li><a href="login.register.html" data-translate="login_register">Giriş / Qeydiyyat</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 data-translate="help">Kömək</h3>
+                <ul class="footer-links">
+                    <li><a href="elaqe.html" data-translate="contact">Əlaqə</a></li>
+                    <li><a href="faq.html" data-translate="faq">FAQ</a></li>
+                    <li><a href="qaydalar.html" data-translate="terms">İstifadə Qaydaları</a></li>
+                    <li><a href="gizlilik.html" data-translate="privacy">Gizlilik Siyasəti</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 PromoMarket. <span data-translate="all_rights">Bütün hüquqlar qorunur.</span></p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="kodsat.js"></script>
+</body>
+</html>
